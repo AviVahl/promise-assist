@@ -1,4 +1,6 @@
 # promise-assist
+[![Build Status](https://travis-ci.com/AviVahl/promise-assist.svg?branch=master)](https://travis-ci.com/AviVahl/promise-assist)
+[![npm version](https://img.shields.io/npm/v/promise-assist.svg)](https://www.npmjs.com/package/promise-assist)
 
 Several helper functions when working with native promises.
 
