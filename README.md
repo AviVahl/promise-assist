@@ -3,7 +3,6 @@
 Several helper functions when working with native promises.
 
 ## API
----
 ### sleep
 
 Useful for waiting a specific amount of time before continuing an operation.
@@ -17,7 +16,7 @@ async function myOperation() {
     console.log(`${Date.now() - startTime}ms passed!`)
 }
 ```
----
+
 ### timeout
 
 Useful for limiting the amount of time an async Promise-based operation can take.
@@ -38,7 +37,7 @@ async function myOperation() {
     }
 }
 ```
----
+
 ### deferred
 
 Creates a deferred Promise, where `resolve`/`reject` are exposed to the place that holds the promise.
@@ -54,7 +53,6 @@ promise.then(value => console.log(value))
 resolve('some text')
 // 'some text' is printed to console
 ```
----
 
 ## License
 
