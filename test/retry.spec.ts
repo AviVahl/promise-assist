@@ -47,12 +47,12 @@ describe('retry', () => {
         expect(resolveOnFour.calls.length).to.equal(3) // first try and then 2 additional re-tries
     })
 
-    it('retries infinite number of times when passed -1 ', async () => {
+    it('retries infinite number of times when passed Infinity ', async () => {
         const resolveOnHundred = stub(
             callNum => callNum >= 100 ? Promise.resolve('OK') : Promise.reject('FAIL')
         )
 
-        await expect(retry(resolveOnHundred, { retries: -1 })).to.eventually.become('OK')
+        await expect(retry(resolveOnHundred, { retries: Infinity })).to.eventually.become('OK')
         await sleep(NO_ADDITIONAL_CALLS_GRACE)
         expect(resolveOnHundred.calls.length).to.equal(100)
     })

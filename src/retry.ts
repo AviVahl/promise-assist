@@ -3,7 +3,7 @@ import { sleep } from './sleep'
 export interface IRetryOptions {
     /**
      * Number of times to retry action if it rejects.
-     * Pass -1 for infinite retries.
+     * Pass `Infinity` for infinite retries.
      *
      * @default 3
      */
@@ -56,7 +56,7 @@ export async function retry<T>(
         }
     })
 
-    const maxAttempts = retries === -1 ? Infinity : retries + 1
+    const maxAttempts = retries + 1
     let attemptCount = 0
     let lastError: Error
 
@@ -80,5 +80,5 @@ export function waitFor<T>(
     action: () => T | Promise<T>,
     options?: IRetryOptions
 ): Promise<T> {
-    return retry(action, { delay: 10, timeout: 500, retries: -1, ...options })
+    return retry(action, { delay: 10, timeout: 500, retries: Infinity, ...options })
 }

@@ -71,15 +71,17 @@ These can be customized via a second optional `options` parameter.
 ```ts
 import { retry } from 'promise-assist'
 
+// with default options
 retry(() => fetch('http://some-url/asset.json'))
     .then(value => value.json())
     .then(console.log)
     .catch(e => console.error(e))
 
+// with custom options
 retry(() => fetch('http://some-url/asset.json'), {
-        retries: -1,            // infinite number of retries
-        delay: 10 * 1000,       // 10 seconds delay between retries
-        timeout: 2 * 60 * 1000  // 2 minutes timeout to stop trying
+        retries: Infinity,         // infinite number of retries
+        delay: 10 * 1000,          // 10 seconds delay between retries
+        timeout: 2 * 60 * 1000     // 2 minutes timeout to stop trying
     })
     .then(value => value.json())
     .then(console.log)
