@@ -44,6 +44,7 @@ export async function retry<T>(
 ): Promise<T> {
     const { retries, delay, timeout } = { ...defaultOptions, ...options }
 
+    let lastError: Error | undefined // we expose last error if all attempts failed
     let timedOut = false
     let timeoutId: number | undefined // so we can cancel the timeout rejection
 
@@ -51,24 +52,34 @@ export async function retry<T>(
         if (timeout > 0) {
             timeoutId = setTimeout(() => {
                 timedOut = true
-                rej(new Error(`timed out after ${timeout}ms`))
+                if (!lastError) {
+                    lastError = new Error(`timed out after ${timeout}ms`)
+                }
+                rej()
             }, timeout)
         }
     })
 
     const maxAttempts = retries + 1
     let attemptCount = 0
-    let lastError: Error
 
     do {
         attemptCount++
         try {
-            const result = await Promise.race([action(), timeoutPromise])
+            const actionResult = action()
+            if (actionResult instanceof Promise) {
+                // make sure we always save error of original promise
+                // Promise.race below might loose it due to timeout
+                actionResult.catch(e => lastError = e || lastError)
+            }
+            const result = await Promise.race([actionResult, timeoutPromise])
             clearTimeout(timeoutId)
             return result
-        } catch (e) {
-            lastError = e
-            await Promise.race([sleep(delay), timeoutPromise])
+        } catch (e) { lastError = e || lastError }
+        if (delay > 0) {
+            try {
+                await Promise.race([sleep(delay), timeoutPromise])
+            } catch { /* we throw lastError at the end */ }
         }
     } while (!timedOut && (attemptCount < maxAttempts))
 

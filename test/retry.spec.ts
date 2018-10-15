@@ -78,50 +78,67 @@ describe('retry', () => {
         expect(thirdCall.calledAt - secondCall.calledAt).to.be.gte(delay)
     })
 
-    it('allows setting a timeout, and resolves if action finished before timeout expires', async () => {
-        const resolveInHundred = stub(() => sleep(100).then(() => Promise.resolve('OK')))
-        const timeout = 150
+    describe('timeout', () => {
 
-        await expect(retry(resolveInHundred, { timeout })).to.eventually.become('OK')
+        it('allows setting a timeout, and resolves if action finished before timeout expires', async () => {
+            const resolveInHundred = stub(() => sleep(100).then(() => Promise.resolve('OK')))
+            const timeout = 150
 
-        await sleep(NO_ADDITIONAL_CALLS_GRACE)
-        expect(resolveInHundred.calls.length).to.equal(1) // resolve on first call
+            await expect(retry(resolveInHundred, { timeout })).to.eventually.become('OK')
+
+            await sleep(NO_ADDITIONAL_CALLS_GRACE)
+            expect(resolveInHundred.calls.length).to.equal(1) // resolve on first call
+        })
+
+        it('rejects if provided timeout expires while action is still pending', async () => {
+            const neverFulfill = stub(() => new Promise(() => { /* never fulfills */ }))
+            const timeout = 100
+
+            const beforeActionDate = Date.now()
+            await expect(retry(neverFulfill, { timeout })).to.eventually.be.rejectedWith('timed out after 100ms')
+            expect(Date.now() - beforeActionDate).to.be.gte(100)
+            await sleep(NO_ADDITIONAL_CALLS_GRACE)
+            expect(neverFulfill.calls.length).to.equal(1) // timeout while first try
+        })
+
+        it('exposes last error if timeout expires during delay', async () => {
+            const alwaysReject = stub(() => Promise.reject('FAIL'))
+            const delay = 200
+            const timeout = 100
+
+            await expect(retry(alwaysReject, { delay, timeout })).to.eventually.be.rejectedWith('FAIL')
+            await sleep(delay * 2)
+            expect(alwaysReject.calls.length).to.equal(1) // first try and then timeout while delay
+        })
+
+        it('has default timeout message if no error is exposed', async () => {
+            const alwaysReject = stub(() => Promise.reject())
+            const delay = 200
+            const timeout = 100
+
+            await expect(retry(alwaysReject, { delay, timeout })).to.eventually.be.rejectedWith('timed out after 100ms')
+            await sleep(delay * 2)
+            expect(alwaysReject.calls.length).to.equal(1) // first try and then timeout while delay
+        })
     })
 
-    it('rejects if provided timeout expires', async () => {
-        const neverFulfill = stub(() => new Promise(() => { /* never fulfills */ }))
-        const timeout = 100
+    describe('sync action', () => {
 
-        const beforeActionDate = Date.now()
-        await expect(retry(neverFulfill, { timeout })).to.eventually.be.rejectedWith('timed out after 100ms')
-        expect(Date.now() - beforeActionDate).to.be.gte(100)
-        await sleep(NO_ADDITIONAL_CALLS_GRACE)
-        expect(neverFulfill.calls.length).to.equal(1) // timeout while first try
+        it('resolves with returned values', async () => {
+            const syncReturn = stub(() => 'OK')
+
+            await expect(retry(syncReturn)).to.eventually.become('OK')
+            await sleep(NO_ADDITIONAL_CALLS_GRACE)
+            expect(syncReturn.calls.length).to.equal(1) // first try
+        })
+
+        it('exposes exceptions', async () => {
+            const syncException = stub(() => { throw new Error('FAIL') })
+
+            await expect(retry(syncException)).to.eventually.be.rejectedWith('FAIL')
+            await sleep(NO_ADDITIONAL_CALLS_GRACE)
+            expect(syncException.calls.length).to.equal(4) // first try and then three more re-tries
+        })
     })
 
-    it('allows setting a timeout with a delay', async () => {
-        const alwaysReject = stub(() => Promise.reject())
-        const delay = 200
-        const timeout = 100
-
-        await expect(retry(alwaysReject, { delay, timeout })).to.eventually.be.rejectedWith('timed out after 100ms')
-        await sleep(delay * 2)
-        expect(alwaysReject.calls.length).to.equal(1) // first try and then timeout while delay
-    })
-
-    it('resolves values of sync actions', async () => {
-        const syncReturn = stub(() => 'OK')
-
-        await expect(retry(syncReturn)).to.eventually.become('OK')
-        await sleep(NO_ADDITIONAL_CALLS_GRACE)
-        expect(syncReturn.calls.length).to.equal(1) // first try
-    })
-
-    it('handles sync exceptions from action', async () => {
-        const syncException = stub(() => { throw new Error('FAIL') })
-
-        await expect(retry(syncException)).to.eventually.be.rejectedWith('FAIL')
-        await sleep(NO_ADDITIONAL_CALLS_GRACE)
-        expect(syncException.calls.length).to.equal(4) // first try and then three more re-tries
-    })
 })
