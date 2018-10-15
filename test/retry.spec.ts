@@ -6,7 +6,9 @@ import { stub } from './stub'
 chai.use(chaiAsPromised)
 const NO_ADDITIONAL_CALLS_GRACE = 200
 
-describe('retry', () => {
+describe('retry', function() {
+    this.timeout(5000)
+
     it('resolves value returned by a resolved action', async () => {
         const alwaysResolve = stub(() => Promise.resolve('OK'))
 
