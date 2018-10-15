@@ -74,8 +74,8 @@ describe('retry', () => {
         expect(resolveOnThree.calls.length).to.equal(3) // first try and then 2 additional re-tries
 
         const [firstCall, secondCall, thirdCall] = resolveOnThree.calls
-        expect(secondCall.calledAt - firstCall.calledAt).to.be.gte(delay)
-        expect(thirdCall.calledAt - secondCall.calledAt).to.be.gte(delay)
+        expect(secondCall.calledAt - firstCall.calledAt).to.be.gte(delay * 0.95)
+        expect(thirdCall.calledAt - secondCall.calledAt).to.be.gte(delay * 0.95)
     })
 
     describe('timeout', () => {
@@ -96,7 +96,7 @@ describe('retry', () => {
 
             const beforeActionDate = Date.now()
             await expect(retry(neverFulfill, { timeout })).to.eventually.be.rejectedWith('timed out after 100ms')
-            expect(Date.now() - beforeActionDate).to.be.gte(100)
+            expect(Date.now() - beforeActionDate).to.be.gte(timeout * 0.95)
             await sleep(NO_ADDITIONAL_CALLS_GRACE)
             expect(neverFulfill.calls.length).to.equal(1) // timeout while first try
         })

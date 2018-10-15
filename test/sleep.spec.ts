@@ -9,6 +9,6 @@ describe('sleep', () => {
         await sleep(delay)
 
         const endTime = Date.now()
-        expect(endTime, 'verify delay').to.be.gte(startTime + delay)
+        expect(endTime, 'verify delay').to.be.gte(startTime + (delay * 0.95))
     })
 })
