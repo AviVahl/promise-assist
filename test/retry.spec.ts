@@ -48,13 +48,13 @@ describe('retry', () => {
     })
 
     it('retries infinite number of times when passed -1 ', async () => {
-        const resolveOnThousand = stub(
+        const resolveOnHundred = stub(
             callNum => callNum >= 100 ? Promise.resolve('OK') : Promise.reject('FAIL')
         )
 
-        await expect(retry(resolveOnThousand, { retries: -1 })).to.eventually.become('OK')
+        await expect(retry(resolveOnHundred, { retries: -1 })).to.eventually.become('OK')
         await sleep(NO_ADDITIONAL_CALLS_GRACE)
-        expect(resolveOnThousand.calls.length).to.equal(100)
+        expect(resolveOnHundred.calls.length).to.equal(100)
     })
 
     it('rejects with custom message if no/empty error message', async () => {
@@ -78,11 +78,23 @@ describe('retry', () => {
         expect(thirdCall.calledAt - secondCall.calledAt).to.be.gte(delay)
     })
 
-    it('allows setting a timeout', async () => {
+    it('allows setting a timeout, and resolves if action finished before timeout expires', async () => {
+        const resolveInHundred = stub(() => sleep(100).then(() => Promise.resolve('OK')))
+        const timeout = 150
+
+        await expect(retry(resolveInHundred, { timeout })).to.eventually.become('OK')
+
+        await sleep(NO_ADDITIONAL_CALLS_GRACE)
+        expect(resolveInHundred.calls.length).to.equal(1) // resolve on first call
+    })
+
+    it('rejects if provided timeout expires', async () => {
         const neverFulfill = stub(() => new Promise(() => { /* never fulfills */ }))
         const timeout = 100
 
+        const beforeActionDate = Date.now()
         await expect(retry(neverFulfill, { timeout })).to.eventually.be.rejectedWith('timed out after 100ms')
+        expect(Date.now() - beforeActionDate).to.be.gte(100)
         await sleep(NO_ADDITIONAL_CALLS_GRACE)
         expect(neverFulfill.calls.length).to.equal(1) // timeout while first try
     })

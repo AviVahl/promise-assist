@@ -52,7 +52,7 @@ export async function retry<T>(
             timeoutId = setTimeout(() => {
                 timedOut = true
                 rej(new Error(`timed out after ${timeout}ms`))
-            })
+            }, timeout)
         }
     })
 
