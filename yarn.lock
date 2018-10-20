@@ -2,18 +2,18 @@
 # yarn lockfile v1
 
 
-"@ts-tools/node@^0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.6.5.tgz#2796a491ba5116f4e8b42cea1b1ece1faa4ac6c5"
-  integrity sha512-ZFNqq/7xZaVs0a+ROFidmbkoZvE7MqbNATQqGET1TVwrHJ/ODQoFafM3USdhQmb7Sf/82ylqgVyNed6jCJIDLA==
+"@ts-tools/node@^0.6.7":
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.6.7.tgz#a623fb0f2a40b5987505bace5d64aab9044de0a7"
+  integrity sha512-/wY6nTWTl9gMd154bvlNOkZDMLZv93HBn55hELNwDQg4YQRXaX2rjjvpnSQzKoox1ua6d5NofDpajaET/2Wc+g==
   dependencies:
-    "@ts-tools/typescript-service" "^0.7.1"
+    "@ts-tools/typescript-service" "^0.8.1"
     source-map-support "^0.5.9"
 
-"@ts-tools/typescript-service@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@ts-tools/typescript-service/-/typescript-service-0.7.1.tgz#d0d52e62cd5f4697293a1b62c2ef437f78ba270c"
-  integrity sha512-WTePj5zgXrntNMdpdnMFls5Jy+3f2Y7TFAKjShSjz548tMs3ZHZIZLCt8reiax2T3obMQ6ab1ILC/PIsf7PtDA==
+"@ts-tools/typescript-service@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@ts-tools/typescript-service/-/typescript-service-0.8.1.tgz#044093a69c7412af4b68e28b6b5de9eeca49ebe8"
+  integrity sha512-/aKyvqRVqs6Sh7s9bISfiEJ201KgxR9B+wlFn0apXFM22SFQZ9yV4MIwRArkNhGC9FZpFXtfHnd/zZYBH6mBVA==
 
 "@types/chai-as-promised@^7.1.0":
   version "7.1.0"
