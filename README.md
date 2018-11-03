@@ -88,6 +88,30 @@ retry(() => fetch('http://some-url/asset.json'), {
     .catch(e => console.error(e))
 ```
 
+### waitFor
+
+Same as `retry`, but with defaults that make more sense for tests:
+- delay: `10`
+- timeout: `500`
+- retries: `Infinity`
+
+It can be used to wait for some assertion to pass.
+
+```ts
+import { waitFor } from 'promise-assist'
+
+describe('suit', () => {
+    it('should wait for an assertion to pass', async () => {
+        let trueLater = false
+        setTimeout(() => { trueLater = true }, 50)
+
+        await waitFor(() => {
+            expect(trueLater).to.equal(true)
+        })
+    })
+})
+```
+
 ## License
 
 MIT
