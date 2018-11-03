@@ -2,18 +2,24 @@
 # yarn lockfile v1
 
 
-"@ts-tools/node@^0.6.8":
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.6.8.tgz#bf52d9f10dbe9cfec37185d92789f5a613bba7f7"
-  integrity sha512-8oQNKyiYi6SHc2D44RHPJWTesglNLQS7+6RvRRESD81MShd6vv1fScHIX/SLyQVqW0612mqImzeq3kfNvyQhug==
+"@ts-tools/node@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.7.0.tgz#f557269f7a6aa8e92bffad678494ec63c98fe083"
+  integrity sha512-02FWt8+HXYcuIbh+zrpDifHhac7RzIca5RPZXb3CidmcA+6dIlLcTl9kAZwM4dQ6jdSDYUyaDLl3s+myG98KbQ==
   dependencies:
-    "@ts-tools/typescript-service" "^0.9.0"
+    "@ts-tools/robotrix" "^0.7.0"
+    "@ts-tools/typescript-service" "^0.9.1"
     source-map-support "^0.5.9"
 
-"@ts-tools/typescript-service@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@ts-tools/typescript-service/-/typescript-service-0.9.0.tgz#5d2f21196dda7caf5a805b00226934b80d7dfe6f"
-  integrity sha512-7DyZmhlKCEcfgPutFHRWY1rFKqyD8mBFykXJ6cnxmzUOte62zetLAw66i5f1kedYLfm9nJDAq2+o2CZ6XRBsnw==
+"@ts-tools/robotrix@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@ts-tools/robotrix/-/robotrix-0.7.0.tgz#5a240ff57b9c7dba970b3ec8a6142e4e22f03bc7"
+  integrity sha512-57ow8Iql0qE7HCI92Hyio6xlnOZ4DvXFzE3oxAzJcYztdLFkuZHyNdELkGFSl262psNur2w/uOszMAojZwjNiw==
+
+"@ts-tools/typescript-service@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@ts-tools/typescript-service/-/typescript-service-0.9.1.tgz#d02a9411231d3281d08256195a3bdd63c357850c"
+  integrity sha512-jNHxvaZn+t/Rn0jiDav5bWqrooGvSL9Lrnlbxop6gJk0odGuE6AWm3+iMLWYA/Yj4DQhg1MEnoduqj/+vJ3TnA==
 
 "@types/chai-as-promised@^7.1.0":
   version "7.1.0"
@@ -332,9 +338,9 @@ glob@^7.0.5, glob@^7.1.1:
     path-is-absolute "^1.0.0"
 
 graceful-fs@^4.1.2:
-  version "4.1.11"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
-  integrity sha1-Dovf5NHduIVNZOBOp8AOKgJuVlg=
+  version "4.1.14"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.14.tgz#1b6e8362ef8c5ecb5da799901f39297e3054773a"
+  integrity sha512-ns/IGcSmmGNPP085JCheg0Nombh1QPvSCnlx+2V+byQWRQEIL4ZB5jXJMNIHOFVS1roi85HIi5Ka0h43iWXfcQ==
 
 growl@1.10.5:
   version "1.10.5"
@@ -694,9 +700,9 @@ spdx-expression-parse@^3.0.0:
     spdx-license-ids "^3.0.0"
 
 spdx-license-ids@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.1.tgz#e2a303236cac54b04031fa7a5a79c7e701df852f"
-  integrity sha512-TfOfPcYGBB5sDuPn3deByxPhmfegAhpDYKSOXZQN81Oyrrif8ZCodOLzK3AesELnCx03kikhyDwh0pfvvQvF8w==
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.2.tgz#a59efc09784c2a5bada13cfeaf5c75dd214044d2"
+  integrity sha512-qky9CVt0lVIECkEsYbNILVnPvycuEBkXoMFLRWsREkomQLevYhtRKC+R91a5TOAQ3bCMjikRwhyaRqj1VYatYg==
 
 split@^1.0.1:
   version "1.0.1"
@@ -798,10 +804,10 @@ type-detect@^4.0.0, type-detect@^4.0.5:
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
 
-typescript@~3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.4.tgz#c74ef7b3c2da65beff548b903022cb8c3cd997ed"
-  integrity sha512-JZHJtA6ZL15+Q3Dqkbh8iCUmvxD3iJ7ujXS+fVkKnwIVAdHc5BJTDNM0aTrnr2luKulFjU7W+SRhDZvi66Ru7Q==
+typescript@~3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
+  integrity sha512-tDMYfVtvpb96msS1lDX9MEdHrW4yOuZ4Kdc4Him9oU796XldPYF/t2+uKoX0BBa0hXXwDlqYQbXY5Rzjzc5hBA==
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
