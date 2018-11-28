@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@ts-tools/node@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.7.1.tgz#7b1b9e214a4446bafd733d4ee194e28543691c74"
-  integrity sha512-96TPybBkITZcO7NXtIJD3VoijhBp7527y+AffOuc715qrKYJeBNhwY5Et/aEwaqTK1UbYkbBrNiCCAVizWVcyg==
+"@ts-tools/node@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.7.2.tgz#e4af3be85e60535d7e8e9c7da45fd6dd1f61db4e"
+  integrity sha512-aVv5LD+xMYQpADzuWJNGEArXHYEn/865Yylxryeky3+yXGj2SZcKAJ35plTDTtOtO9x1JwE1adGy456bUCogfQ==
   dependencies:
     "@ts-tools/robotrix" "^0.7.1"
-    "@ts-tools/typescript-service" "^0.9.1"
+    "@ts-tools/service" "^0.9.2"
     source-map-support "^0.5.9"
 
 "@ts-tools/robotrix@^0.7.1":
@@ -16,10 +16,10 @@
   resolved "https://registry.yarnpkg.com/@ts-tools/robotrix/-/robotrix-0.7.1.tgz#91a4a2b683c89dd03ead635881ad58d5833cd9a4"
   integrity sha512-Lha2M+PDcZFoEiOdIlAEObYjCLAdwR7en1SEsCuqOh32rScnOCiQ/FBgGdnyfPWaU8Rkh4Rrlf6unwQtmwrPow==
 
-"@ts-tools/typescript-service@^0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@ts-tools/typescript-service/-/typescript-service-0.9.1.tgz#d02a9411231d3281d08256195a3bdd63c357850c"
-  integrity sha512-jNHxvaZn+t/Rn0jiDav5bWqrooGvSL9Lrnlbxop6gJk0odGuE6AWm3+iMLWYA/Yj4DQhg1MEnoduqj/+vJ3TnA==
+"@ts-tools/service@^0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@ts-tools/service/-/service-0.9.2.tgz#a59e5ac028b75bc8022bef5d2e9d3a31668c43dd"
+  integrity sha512-SRAV5KuXWEUGFFHGgLV7MPxkmJxf7m4eYjR16st42CzYoV8DDMKYWFgEjwVGsoORwaWiDWIGzKJ8C/j4CE/CQQ==
 
 "@types/chai-as-promised@^7.1.0":
   version "7.1.0"
