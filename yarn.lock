@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@ts-tools/node@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.9.0.tgz#0325f142a1d59303bf939080e2f48d26faf5853b"
-  integrity sha512-WOcQzwzUJR7hw2hI8ptSN0PtaRfgUCsWeB6q8jI1+jjvXxgNiDvajm9CUoHop1452/LKfYBGRmq+W/0gCm6N/A==
+"@ts-tools/node@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.9.1.tgz#c802c89f43d0771ed96be438d0d502a1a55851de"
+  integrity sha512-79RUMicjE9DlKcQHYUXslXAiZFOodzzDITwSM/cJLUui/4TO+QXncAC2WsR8AJM3N11uBzPNEoa1b3Wt9yGQ2A==
   dependencies:
     "@ts-tools/robotrix" "^0.7.4"
-    "@ts-tools/service" "^1.0.3"
+    "@ts-tools/service" "^1.0.4"
     is-ci "^2.0.0"
     source-map-support "^0.5.10"
 
@@ -17,10 +17,10 @@
   resolved "https://registry.yarnpkg.com/@ts-tools/robotrix/-/robotrix-0.7.4.tgz#eaef5dd73d261f23915eeaebdeb63277705aec0c"
   integrity sha512-vZdskXKBISTyZuHBseGBc+oM9F5qJ8cd8Bx/rNBt5R9oSJj7v23zSlE+5SRvmVA6c2eKQpicVALrTNAVcAl8fQ==
 
-"@ts-tools/service@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@ts-tools/service/-/service-1.0.3.tgz#f18715c846f66beff5056ed9db9d923729efe8d8"
-  integrity sha512-zQ2T+prTFAkLNMolo5C55+r4tIi5BRDq8RjbnsmEIYvFY4xvv2spA88iee6tmxApq4vIDqxyvecbghXJvInu9g==
+"@ts-tools/service@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@ts-tools/service/-/service-1.0.4.tgz#0035da61209a53e9d904dc70b7ec159cdbd6571f"
+  integrity sha512-UchYvRgqU4cWHGWjQRu7YYXwVim+gNZ2R0J3i8GduRLEx6rgtvQfCAZS/UaDtfjhhe3EDTgOfrnN0fNr5r7v9A==
 
 "@types/chai-as-promised@^7.1.0":
   version "7.1.0"
@@ -505,9 +505,9 @@ nice-try@^1.0.4:
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
 normalize-package-data@^2.3.2:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.4.0.tgz#12f95a307d58352075a04907b84ac8be98ac012f"
-  integrity sha512-9jjUFbTPfEy3R/ad/2oNbKtW9Hgovl5O1FvFWKkKblNXoN/Oou6+9+KKohPK13Yc3/TyunyWhJp6gvRNR/PPAw==
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.4.2.tgz#6b2abd85774e51f7936f1395e45acb905dc849b2"
+  integrity sha512-YcMnjqeoUckXTPKZSAsPjUPLxH85XotbpqK3w4RyCwdFQSU5FxxBys8buehkSfg0j9fKvV1hn7O0+8reEgkAiw==
   dependencies:
     hosted-git-info "^2.1.4"
     is-builtin-module "^1.0.0"
@@ -755,10 +755,10 @@ type-detect@^4.0.0, type-detect@^4.0.5:
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
 
-typescript@~3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.4.tgz#c585cb952912263d915b462726ce244ba510ef3d"
-  integrity sha512-0RNDbSdEokBeEAkgNbxJ+BLwSManFy9TeXz8uW+48j/xhEXv1ePME60olyzw2XzUqUBNAYFeJadIqAgNqIACwg==
+typescript@~3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.1.tgz#6de14e1db4b8a006ac535e482c8ba018c55f750b"
+  integrity sha512-cTmIDFW7O0IHbn1DPYjkiebHxwtCMU+eTy30ZtJNBPF9j2O1ITu5XH2YnBeVRKWHqF+3JQwWJv0Q0aUgX8W7IA==
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
