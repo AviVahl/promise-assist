@@ -32,7 +32,8 @@
   "files": [
     "cjs",
     "esm",
-    "src"
+    "src",
+    "!src/tsconfig.json"
   ],
   "engines": {
     "node": ">=8"
