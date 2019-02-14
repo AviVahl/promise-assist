@@ -14,7 +14,8 @@
     "lint:src": "tslint -p src",
     "lint:test": "tslint -p test",
     "pretest": "yarn lint",
-    "test": "mocha -r @ts-tools/node/r \"test/**/*.spec.ts\" --watch-extensions ts"
+    "test": "mocha -r @ts-tools/node/r \"test/**/*.spec.ts\" --watch-extensions ts",
+    "prepack": "yarn build"
   },
   "devDependencies": {
     "@ts-tools/node": "^0.9.2",
