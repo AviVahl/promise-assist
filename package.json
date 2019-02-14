@@ -17,10 +17,10 @@
     "test": "mocha -r @ts-tools/node/r \"test/**/*.spec.ts\" --watch-extensions ts"
   },
   "devDependencies": {
-    "@ts-tools/node": "^0.9.1",
+    "@ts-tools/node": "^0.9.2",
     "@types/chai": "^4.1.7",
     "@types/chai-as-promised": "^7.1.0",
-    "@types/mocha": "^5.2.5",
+    "@types/mocha": "^5.2.6",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^5.2.0",
