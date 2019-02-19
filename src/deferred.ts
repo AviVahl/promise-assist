@@ -14,7 +14,7 @@ export interface IDeferredPromise<T> {
  * Generally bad practice, but there are use-cases where one mixes
  * callback-based API with Promise API and this is helpful.
  */
-export function deferred<T>(): IDeferredPromise<T> {
+export function deferred<T = void>(): IDeferredPromise<T> {
     let resolve!: PromiseResolveCb<T>
     let reject!: PromiseRejectCb
     const promise = new Promise<T>((res, rej) => {
