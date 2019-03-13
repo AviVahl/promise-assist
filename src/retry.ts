@@ -46,7 +46,7 @@ export async function retry<T>(
 
     let lastError: Error | undefined // we expose last error if all attempts failed
     let timedOut = false
-    let timeoutId: number | undefined // so we can cancel the timeout rejection
+    let timeoutId: ReturnType<typeof setTimeout> | undefined // so we can cancel the timeout rejection
 
     const timeoutPromise = new Promise<T>((_res, rej) => {
         if (timeout > 0) {
