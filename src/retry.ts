@@ -1,4 +1,4 @@
-import { sleep } from './sleep'
+import { sleep } from './sleep';
 
 export interface IRetryOptions {
     /**
@@ -7,28 +7,28 @@ export interface IRetryOptions {
      *
      * @default 3
      */
-    retries?: number
+    retries?: number;
 
     /**
      * Delay in ms between trials.
      *
      * @default 0 (no delay)
      */
-    delay?: number
+    delay?: number;
 
     /**
      * Timeout in ms to stop trying.
      *
      * @default 0 (no timeout)
      */
-    timeout?: number
+    timeout?: number;
 }
 
 const defaultOptions: Required<IRetryOptions> = {
     retries: 3,
     delay: 0,
     timeout: 0
-}
+};
 
 /**
  * Executes provided `action` and returns its value.
@@ -42,54 +42,54 @@ export async function retry<T>(
     action: () => T | Promise<T>,
     options?: IRetryOptions,
 ): Promise<T> {
-    const { retries, delay, timeout } = { ...defaultOptions, ...options }
+    const { retries, delay, timeout } = { ...defaultOptions, ...options };
 
-    let lastError: Error | undefined // we expose last error if all attempts failed
-    let timedOut = false
-    let timeoutId: ReturnType<typeof setTimeout> | undefined // so we can cancel the timeout rejection
+    let lastError: Error | undefined; // we expose last error if all attempts failed
+    let timedOut = false;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined; // so we can cancel the timeout rejection
 
     const timeoutPromise = new Promise<T>((_res, rej) => {
         if (timeout > 0) {
             timeoutId = setTimeout(() => {
-                timedOut = true
+                timedOut = true;
                 if (!lastError) {
-                    lastError = new Error(`timed out after ${timeout}ms`)
+                    lastError = new Error(`timed out after ${timeout}ms`);
                 }
-                rej()
-            }, timeout)
+                rej();
+            }, timeout);
         }
-    })
+    });
 
-    const maxAttempts = retries + 1
-    let attemptCount = 0
+    const maxAttempts = retries + 1;
+    let attemptCount = 0;
 
     do {
-        attemptCount++
+        attemptCount++;
         try {
-            const actionResult = action()
+            const actionResult = action();
             if (actionResult instanceof Promise) {
                 // make sure we always save error of original promise
                 // Promise.race below might loose it due to timeout
-                actionResult.catch(e => lastError = e || lastError)
+                actionResult.catch(e => lastError = e || lastError);
             }
-            const result = await Promise.race([actionResult, timeoutPromise])
-            clearTimeout(timeoutId)
-            return result
-        } catch (e) { lastError = e || lastError }
+            const result = await Promise.race([actionResult, timeoutPromise]);
+            clearTimeout(timeoutId);
+            return result;
+        } catch (e) { lastError = e || lastError; }
         if (delay > 0) {
             try {
-                await Promise.race([sleep(delay), timeoutPromise])
+                await Promise.race([sleep(delay), timeoutPromise]);
             } catch { /* we throw lastError at the end */ }
         }
-    } while (!timedOut && (attemptCount < maxAttempts))
+    } while (!timedOut && (attemptCount < maxAttempts));
 
-    clearTimeout(timeoutId)
-    throw (lastError || new Error(`failed after ${attemptCount} tries`))
+    clearTimeout(timeoutId);
+    throw (lastError || new Error(`failed after ${attemptCount} tries`));
 }
 
 export function waitFor<T>(
     action: () => T | Promise<T>,
     options?: IRetryOptions
 ): Promise<T> {
-    return retry(action, { delay: 10, timeout: 500, retries: Infinity, ...options })
+    return retry(action, { delay: 10, timeout: 500, retries: Infinity, ...options });
 }

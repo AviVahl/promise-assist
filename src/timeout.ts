@@ -14,16 +14,17 @@ export function timeout<T>(
     timeoutMessage = `timed out after ${ms}ms`
 ): Promise<T> {
     return new Promise((resolve, reject) => {
-        const timerId = setTimeout(() => reject(new Error(timeoutMessage)), ms)
+        const timerId = setTimeout(() => reject(new Error(timeoutMessage)), ms);
+
         originalPromise.then(
             resolvedValue => {
-                clearTimeout(timerId)
-                resolve(resolvedValue)
+                clearTimeout(timerId);
+                resolve(resolvedValue);
             },
             rejectReason => {
-                clearTimeout(timerId)
-                reject(rejectReason)
+                clearTimeout(timerId);
+                reject(rejectReason);
             }
-        )
-    })
+        );
+    });
 }

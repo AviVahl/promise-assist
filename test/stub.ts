@@ -10,20 +10,20 @@ export function stub<T>(
 ): IStub<T> {
 
     function actualStub() {
-        actualStub.calls.push({ calledAt: Date.now() })
-        return callback(actualStub.calls.length)
+        actualStub.calls.push({ calledAt: Date.now() });
+        return callback(actualStub.calls.length);
     }
 
-    actualStub.calls = [] as IStubCall[]
+    actualStub.calls = [] as IStubCall[];
 
-    return actualStub
+    return actualStub;
 }
 
 export interface IStub<T> {
-    (): T | Promise<T>
-    calls: IStubCall[]
+    (): T | Promise<T>;
+    calls: IStubCall[];
 }
 
 export interface IStubCall {
-    calledAt: number
+    calledAt: number;
 }
