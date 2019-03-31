@@ -91,5 +91,5 @@ export function waitFor<T>(
     action: () => T | Promise<T>,
     options?: IRetryOptions
 ): Promise<T> {
-    return retry(action, { delay: 10, timeout: 500, retries: Infinity, ...options });
+    return retry(action, { delay: 10, timeout: 1000, retries: Infinity, ...options });
 }
