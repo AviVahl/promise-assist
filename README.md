@@ -92,7 +92,7 @@ retry(() => fetch('http://some-url/asset.json'), {
 
 Same as `retry`, but with defaults that make more sense for tests:
 - delay: `10`
-- timeout: `500`
+- timeout: `1000`
 - retries: `Infinity`
 
 It can be used to wait for some assertion to pass.
