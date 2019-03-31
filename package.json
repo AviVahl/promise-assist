@@ -1,7 +1,7 @@
 {
   "name": "promise-assist",
   "description": "Several helper functions when working with native promises",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "types": "./esm/index.d.ts",
