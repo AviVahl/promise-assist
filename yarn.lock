@@ -18,13 +18,13 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@ts-tools/node@^0.9.7":
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.9.7.tgz#4440697142de110001b015e346ece08947acb175"
-  integrity sha512-xAFR3b5TFwc5JhEuZj8udv6w9jdOeE3atbSYrV1JJxz0zzkNbTgiRqBdL8Qwld+iU4FkRFmgrNgpyLqP4JaCsw==
+"@ts-tools/node@^0.9.8":
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/@ts-tools/node/-/node-0.9.8.tgz#f13d2c8dfa3b1c2c88305d778c317956377fab12"
+  integrity sha512-vUklgBpgJxnoxGG5hwFHM+fhtLKUZblwbjIwyZQW3n8bxemE1evV3RGE/d0U0amZeE4dmEGTne8HwPFuEIBDTg==
   dependencies:
     "@ts-tools/robotrix" "^0.7.5"
-    "@ts-tools/service" "^2.0.3"
+    "@ts-tools/service" "^2.0.4"
     is-ci "^2.0.0"
     source-map-support "^0.5.12"
 
@@ -33,10 +33,10 @@
   resolved "https://registry.yarnpkg.com/@ts-tools/robotrix/-/robotrix-0.7.5.tgz#b7410643805b0f149b8106dba40472e2ea0d505e"
   integrity sha512-x8JpibobUkOYbUYEOOLK01WRa7rzQwlrb2F/qNX26GSY+CWUgVEb5TJrC9nRJnqgaDeSutIMyvUqCN3WIdu7JA==
 
-"@ts-tools/service@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@ts-tools/service/-/service-2.0.3.tgz#9b784954e27abf658e0449726892499a96ee80d9"
-  integrity sha512-OrqLZlYHWkJmR049uB6nDgwpPBPDUC6fhrsR0W6hiN+BVoyZ/LohJZnSRYzMcLWwAyJL5Git0OVMWS+AHu+BGg==
+"@ts-tools/service@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@ts-tools/service/-/service-2.0.4.tgz#124e50935ee6a9ee117670c325725a7e3357ad43"
+  integrity sha512-bUre2eYH8yBo8lQVzndYcYzi65n1JOkjyUpJknwIXn7H4vkTqiREFBdceLOt03w8yY9FAMcXN3f1XKDhe4mA9Q==
 
 "@types/chai-as-promised@^7.1.0":
   version "7.1.0"
@@ -903,10 +903,10 @@ type-detect@^4.0.0, type-detect@^4.0.5:
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
 
-typescript@~3.4.5:
-  version "3.4.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
-  integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
+typescript@~3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.1.tgz#ba72a6a600b2158139c5dd8850f700e231464202"
+  integrity sha512-64HkdiRv1yYZsSe4xC1WVgamNigVYjlssIoaH2HcZF0+ijsk5YK2g0G34w9wJkze8+5ow4STd22AynfO6ZYYLw==
 
 which-module@^2.0.0:
   version "2.0.0"

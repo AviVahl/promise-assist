@@ -17,7 +17,7 @@
     "prepack": "yarn build"
   },
   "devDependencies": {
-    "@ts-tools/node": "^0.9.7",
+    "@ts-tools/node": "^0.9.8",
     "@types/chai": "^4.1.7",
     "@types/chai-as-promised": "^7.1.0",
     "@types/mocha": "^5.2.6",
@@ -26,7 +26,7 @@
     "mocha": "^6.1.4",
     "rimraf": "^2.6.3",
     "tslint": "^5.16.0",
-    "typescript": "~3.4.5"
+    "typescript": "~3.5.1"
   },
   "files": [
     "cjs",

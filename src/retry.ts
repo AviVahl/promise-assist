@@ -72,7 +72,7 @@ export async function retry<T>(
                 // Promise.race below might loose it due to timeout
                 actionResult.catch(e => lastError = e || lastError);
             }
-            const result = await Promise.race([actionResult, timeoutPromise]);
+            const result = await Promise.race([actionResult, timeoutPromise]) as T;
             clearTimeout(timeoutId);
             return result;
         } catch (e) { lastError = e || lastError; }
