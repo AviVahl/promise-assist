@@ -9,21 +9,22 @@
     "clean": "rimraf ./cjs ./esm",
     "prebuild": "yarn clean",
     "build": "yarn build:cjs && yarn build:esm",
-    "build:cjs": "tsc -p src --outDir cjs --module commonjs",
-    "build:esm": "tsc -p src --outDir esm --module esnext",
-    "lint": "tslint -p tsconfig.base.json",
-    "pretest": "yarn lint",
-    "test": "mocha -r @ts-tools/node/r \"test/**/*.spec.ts\" --watch-extensions ts",
+    "build:cjs": "tsc -p tsconfig.build.json --outDir cjs --module commonjs",
+    "build:esm": "tsc -p tsconfig.build.json --outDir esm --module esnext",
+    "lint": "tslint -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "pretest": "yarn lint && yarn typecheck",
+    "test": "mocha \"test/**/*.spec.ts\"",
     "prepack": "yarn build"
   },
   "devDependencies": {
-    "@ts-tools/node": "^0.9.10",
-    "@types/chai": "^4.2.2",
+    "@ts-tools/node": "^1.0.0",
+    "@types/chai": "^4.2.3",
     "@types/chai-as-promised": "^7.1.2",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^6.2.0",
+    "mocha": "^6.2.1",
     "rimraf": "^3.0.0",
     "tslint": "^5.20.0",
     "typescript": "~3.6.3"
@@ -31,8 +32,7 @@
   "files": [
     "cjs",
     "esm",
-    "src",
-    "!src/tsconfig.json"
+    "src"
   ],
   "engines": {
     "node": ">=8"
