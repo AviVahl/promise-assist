@@ -18,14 +18,14 @@
   },
   "devDependencies": {
     "@ts-tools/node": "^1.1.2",
-    "@types/chai": "^4.2.5",
+    "@types/chai": "^4.2.6",
     "@types/chai-as-promised": "^7.1.2",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^6.2.2",
     "rimraf": "^3.0.0",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.3"
   },
   "files": [
     "cjs",
