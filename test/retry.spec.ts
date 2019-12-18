@@ -24,13 +24,9 @@ describe('retry', function() {
     });
 
     it('retries 3 times by default', async () => {
-        const resolveOnFour = stub(
-            callNum => callNum >= 4 ? Promise.resolve('OK') : Promise.reject('FAIL')
-        );
+        const resolveOnFour = stub(callNum => (callNum >= 4 ? Promise.resolve('OK') : Promise.reject('FAIL')));
 
-        const resolveOnFive = stub(
-            callNum => callNum >= 5 ? Promise.resolve('OK') : Promise.reject('FAIL')
-        );
+        const resolveOnFive = stub(callNum => (callNum >= 5 ? Promise.resolve('OK') : Promise.reject('FAIL')));
 
         await expect(retry(resolveOnFour)).to.eventually.become('OK');
         await expect(retry(resolveOnFive)).to.eventually.be.rejectedWith('FAIL');
@@ -40,9 +36,7 @@ describe('retry', function() {
     });
 
     it('allows specifying number of retries', async () => {
-        const resolveOnFour = stub(
-            callNum => callNum >= 4 ? Promise.resolve('OK') : Promise.reject('FAIL')
-        );
+        const resolveOnFour = stub(callNum => (callNum >= 4 ? Promise.resolve('OK') : Promise.reject('FAIL')));
 
         await expect(retry(resolveOnFour, { retries: 2 })).to.eventually.be.rejectedWith('FAIL');
         await sleep(NO_ADDITIONAL_CALLS_GRACE);
@@ -50,9 +44,7 @@ describe('retry', function() {
     });
 
     it('retries infinite number of times when passed Infinity ', async () => {
-        const resolveOnHundred = stub(
-            callNum => callNum >= 100 ? Promise.resolve('OK') : Promise.reject('FAIL')
-        );
+        const resolveOnHundred = stub(callNum => (callNum >= 100 ? Promise.resolve('OK') : Promise.reject('FAIL')));
 
         await expect(retry(resolveOnHundred, { retries: Infinity })).to.eventually.become('OK');
         await sleep(NO_ADDITIONAL_CALLS_GRACE);
@@ -68,7 +60,7 @@ describe('retry', function() {
     });
 
     it('allows delaying re-tries', async () => {
-        const resolveOnThree = stub(callNum => callNum >= 3 ? Promise.resolve('OK') : Promise.reject());
+        const resolveOnThree = stub(callNum => (callNum >= 3 ? Promise.resolve('OK') : Promise.reject()));
         const delay = 100;
 
         await expect(retry(resolveOnThree, { delay })).to.eventually.become('OK');
@@ -81,7 +73,6 @@ describe('retry', function() {
     });
 
     describe('timeout', () => {
-
         it('allows setting a timeout, and resolves if action finished before timeout expires', async () => {
             const resolveInHundred = stub(() => sleep(100).then(() => Promise.resolve('OK')));
             const timeout = 150;
@@ -93,7 +84,12 @@ describe('retry', function() {
         });
 
         it('rejects if provided timeout expires while action is still pending', async () => {
-            const neverFulfill = stub(() => new Promise(() => { /* never fulfills */ }));
+            const neverFulfill = stub(
+                () =>
+                    new Promise(() => {
+                        /* never fulfills */
+                    })
+            );
             const timeout = 100;
 
             const beforeActionDate = Date.now();
@@ -118,15 +114,27 @@ describe('retry', function() {
             const delay = 200;
             const timeout = 100;
 
-            await expect(retry(alwaysReject, { delay, timeout }))
-                .to.eventually.be.rejectedWith('timed out after 100ms');
+            await expect(retry(alwaysReject, { delay, timeout })).to.eventually.be.rejectedWith(
+                'timed out after 100ms'
+            );
             await sleep(delay * 2);
             expect(alwaysReject.calls.length).to.equal(1); // first try and then timeout while delay
         });
+
+        if (typeof Error.captureStackTrace === 'function') {
+            it('shows stack trace', async () => {
+                const alwaysReject = stub(() => Promise.reject());
+                const delay = 200;
+                const timeout = 100;
+
+                await expect(retry(alwaysReject, { delay, timeout })).to.eventually.be.rejectedWith(__filename);
+                await sleep(delay * 2);
+                expect(alwaysReject.calls.length).to.equal(1); // first try and then timeout while delay
+            });
+        }
     });
 
     describe('sync action', () => {
-
         it('resolves with returned values', async () => {
             const syncReturn = stub(() => 'OK');
 
@@ -136,12 +144,13 @@ describe('retry', function() {
         });
 
         it('exposes exceptions', async () => {
-            const syncException = stub(() => { throw new Error('FAIL'); });
+            const syncException = stub(() => {
+                throw new Error('FAIL');
+            });
 
             await expect(retry(syncException)).to.eventually.be.rejectedWith('FAIL');
             await sleep(NO_ADDITIONAL_CALLS_GRACE);
             expect(syncException.calls.length).to.equal(4); // first try and then three more re-tries
         });
     });
-
 });

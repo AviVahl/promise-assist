@@ -30,6 +30,8 @@ const defaultOptions: Required<IRetryOptions> = {
     timeout: 0
 };
 
+const envCanCaptureStack = !!Error.captureStackTrace;
+
 /**
  * Executes provided `action` and returns its value.
  * If `action` throws or rejects, it will retry execution
@@ -38,22 +40,25 @@ const defaultOptions: Required<IRetryOptions> = {
  * @param action sync or async callback
  * @param options customize behavior
  */
-export async function retry<T>(
-    action: () => T | Promise<T>,
-    options?: IRetryOptions,
-): Promise<T> {
+export async function retry<T>(action: () => T | Promise<T>, options?: IRetryOptions): Promise<T> {
     const { retries, delay, timeout } = { ...defaultOptions, ...options };
 
     let lastError: Error | undefined; // we expose last error if all attempts failed
     let timedOut = false;
-    let timeoutId: ReturnType<typeof setTimeout> | undefined; // so we can cancel the timeout rejection
+    let timeoutId!: ReturnType<typeof setTimeout>; // so we can cancel the timeout rejection
+    let timeoutMessage = `timed out after ${timeout}ms`;
+    if (envCanCaptureStack) {
+        const stackProvider = { stack: '' };
+        Error.captureStackTrace(stackProvider);
+        timeoutMessage += `\n${stackProvider.stack}`;
+    }
 
     const timeoutPromise = new Promise<T>((_res, rej) => {
         if (timeout > 0) {
             timeoutId = setTimeout(() => {
                 timedOut = true;
                 if (!lastError) {
-                    lastError = new Error(`timed out after ${timeout}ms`);
+                    lastError = new Error(timeoutMessage);
                 }
                 rej();
             }, timeout);
@@ -70,26 +75,27 @@ export async function retry<T>(
             if (actionResult instanceof Promise) {
                 // make sure we always save error of original promise
                 // Promise.race below might loose it due to timeout
-                actionResult.catch(e => lastError = e || lastError);
+                actionResult.catch(e => (lastError = e || lastError));
             }
-            const result = await Promise.race([actionResult, timeoutPromise]) as T;
-            clearTimeout(timeoutId);
+            const result = (await Promise.race([actionResult, timeoutPromise])) as T;
+            clearTimeout(timeoutId!);
             return result;
-        } catch (e) { lastError = e || lastError; }
+        } catch (e) {
+            lastError = e || lastError;
+        }
         if (delay > 0) {
             try {
                 await Promise.race([sleep(delay), timeoutPromise]);
-            } catch { /* we throw lastError at the end */ }
+            } catch {
+                /* we throw lastError at the end */
+            }
         }
-    } while (!timedOut && (attemptCount < maxAttempts));
+    } while (!timedOut && attemptCount < maxAttempts);
 
-    clearTimeout(timeoutId);
-    throw (lastError || new Error(`failed after ${attemptCount} tries`));
+    clearTimeout(timeoutId!);
+    throw lastError || new Error(`failed after ${attemptCount} tries`);
 }
 
-export function waitFor<T>(
-    action: () => T | Promise<T>,
-    options?: IRetryOptions
-): Promise<T> {
+export function waitFor<T>(action: () => T | Promise<T>, options?: IRetryOptions): Promise<T> {
     return retry(action, { delay: 10, timeout: 1000, retries: Infinity, ...options });
 }
