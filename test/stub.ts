@@ -5,10 +5,7 @@
  * It provides `callback` with the call number to help mock different
  * return values for different calls.
  */
-export function stub<T>(
-    callback: (callNumber: number) => T | Promise<T>
-): IStub<T> {
-
+export function stub<T>(callback: (callNumber: number) => T | Promise<T>): IStub<T> {
     function actualStub() {
         actualStub.calls.push({ calledAt: Date.now() });
         return callback(actualStub.calls.length);
