@@ -9,22 +9,22 @@
  * @param timeoutMessage optional custom timeout message
  */
 export function timeout<T>(
-    originalPromise: Promise<T>,
-    ms: number,
-    timeoutMessage = `timed out after ${ms}ms`
+  originalPromise: Promise<T>,
+  ms: number,
+  timeoutMessage = `timed out after ${ms}ms`
 ): Promise<T> {
-    return new Promise((resolve, reject) => {
-        const timerId = setTimeout(() => reject(new Error(timeoutMessage)), ms);
+  return new Promise((resolve, reject) => {
+    const timerId = setTimeout(() => reject(new Error(timeoutMessage)), ms);
 
-        originalPromise.then(
-            resolvedValue => {
-                clearTimeout(timerId);
-                resolve(resolvedValue);
-            },
-            rejectReason => {
-                clearTimeout(timerId);
-                reject(rejectReason);
-            }
-        );
-    });
+    originalPromise.then(
+      (resolvedValue) => {
+        clearTimeout(timerId);
+        resolve(resolvedValue);
+      },
+      (rejectReason) => {
+        clearTimeout(timerId);
+        reject(rejectReason);
+      }
+    );
+  });
 }
