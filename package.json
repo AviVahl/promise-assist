@@ -39,6 +39,10 @@
   "sideEffects": false,
   "author": "Avi Vahl <avi.vahl@wix.com>",
   "license": "MIT",
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true
+  },
   "repository": "https://github.com/AviVahl/promise-assist",
   "homepage": "https://github.com/AviVahl/promise-assist"
 }
