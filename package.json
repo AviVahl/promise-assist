@@ -44,8 +44,15 @@
     "singleQuote": true
   },
   "mocha": {
-    "require": ["@ts-tools/node/r"],
-    "extension": ["js", "json", "ts", "tsx"]
+    "require": [
+      "@ts-tools/node/r"
+    ],
+    "extension": [
+      "js",
+      "json",
+      "ts",
+      "tsx"
+    ]
   },
   "repository": "https://github.com/AviVahl/promise-assist",
   "homepage": "https://github.com/AviVahl/promise-assist"
