@@ -24,7 +24,7 @@
     "@types/node": "8",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^7.1.2",
+    "mocha": "^7.2.0",
     "rimraf": "^3.0.2",
     "typescript": "~3.9.3"
   },
