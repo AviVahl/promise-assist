@@ -21,7 +21,7 @@
     "@types/chai": "^4.2.11",
     "@types/chai-as-promised": "^7.1.2",
     "@types/mocha": "^7.0.2",
-    "@types/node": "8",
+    "@types/node": "10",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^8.0.0",
@@ -34,7 +34,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "sideEffects": false,
   "author": "Avi Vahl <avi.vahl@wix.com>",
