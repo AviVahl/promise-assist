@@ -109,6 +109,14 @@ describe('retry', function () {
       expect(alwaysReject.calls.length).to.equal(1); // first try and then timeout while delay
     });
 
+    it('exposes last error if timeout expires during action', async () => {
+      const sleepThenReject = stub(() => sleep(75).then(() => Promise.reject('FAIL')));
+      const timeout = 100;
+
+      await expect(retry(sleepThenReject, { timeout })).to.eventually.be.rejectedWith('FAIL');
+      expect(sleepThenReject.calls.length).to.equal(2); // first try and then timeout while delay
+    });
+
     it('has default timeout message if no error is exposed', async () => {
       const alwaysReject = stub(() => Promise.reject());
       const delay = 200;
