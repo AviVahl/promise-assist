@@ -96,6 +96,12 @@ export async function retry<T>(action: () => T | Promise<T>, options?: IRetryOpt
   throw lastError || new Error(`failed after ${attemptCount} tries`);
 }
 
-export function waitFor<T>(action: () => T | Promise<T>, options?: IRetryOptions): Promise<T> {
-  return retry(action, { delay: 10, timeout: 1000, retries: Infinity, ...options });
+/**
+ * @param options defaults to `{delay: 10, timeout: 1000, retries: Infinity }`
+ */
+export function waitFor<T>(
+  action: () => T | Promise<T>,
+  options: IRetryOptions = { delay: 10, timeout: 1000, retries: Infinity }
+): Promise<T> {
+  return retry(action, { ...options });
 }
