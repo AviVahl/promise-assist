@@ -43,7 +43,7 @@ const envCanCaptureStack = !!Error.captureStackTrace;
 export async function retry<T>(action: () => T | Promise<T>, options?: IRetryOptions): Promise<T> {
   const { retries, delay, timeout } = { ...defaultOptions, ...options };
 
-  let lastError: Error | undefined; // we expose last error if all attempts failed
+  let lastError: unknown; // we expose last error if all attempts failed
   let timedOut = false;
   let timeoutId!: ReturnType<typeof setTimeout>; // so we can cancel the timeout rejection
   let timeoutMessage = `timed out after ${timeout}ms`;
