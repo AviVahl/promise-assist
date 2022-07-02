@@ -1,7 +1,7 @@
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { retry, sleep } from '../src';
-import { stub } from './stub';
+import { IStubCall, stub } from './stub';
 
 chai.use(chaiAsPromised);
 const NO_ADDITIONAL_CALLS_GRACE = 200;
@@ -67,7 +67,7 @@ describe('retry', function () {
     await sleep(NO_ADDITIONAL_CALLS_GRACE);
     expect(resolveOnThree.calls.length).to.equal(3); // first try and then 2 additional re-tries
 
-    const [firstCall, secondCall, thirdCall] = resolveOnThree.calls;
+    const [firstCall, secondCall, thirdCall] = resolveOnThree.calls as [IStubCall, IStubCall, IStubCall];
     expect(secondCall.calledAt - firstCall.calledAt).to.be.gte(delay * 0.95);
     expect(thirdCall.calledAt - secondCall.calledAt).to.be.gte(delay * 0.95);
   });
