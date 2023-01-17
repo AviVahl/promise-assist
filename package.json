@@ -39,10 +39,6 @@
   "sideEffects": false,
   "author": "Avi Vahl <avi.vahl@wix.com>",
   "license": "MIT",
-  "prettier": {
-    "printWidth": 120,
-    "singleQuote": true
-  },
   "mocha": {
     "require": [
       "@ts-tools/node/r"
