@@ -20,4 +20,8 @@ describe('timeout', () => {
   it('allows providing a custom timeout message', async () => {
     await expect(timeout(sleep(200), 50, 'FAILED!')).to.eventually.be.rejectedWith('FAILED!');
   });
+
+  it('allows providing a custom timeout message from callback', async () => {
+    await expect(timeout(sleep(200), 50, () => 'FAILED!')).to.eventually.be.rejectedWith('FAILED!');
+  });
 });

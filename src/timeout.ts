@@ -11,10 +11,13 @@
 export function timeout<T>(
   originalPromise: Promise<T>,
   ms: number,
-  timeoutMessage = `timed out after ${ms}ms`
+  timeoutMessage: string | (() => string) = `timed out after ${ms}ms`
 ): Promise<T> {
   return new Promise((resolve, reject) => {
-    const timerId = setTimeout(() => reject(new Error(timeoutMessage)), ms);
+    const timerId = setTimeout(
+      () => reject(new Error(typeof timeoutMessage === 'function' ? timeoutMessage() : timeoutMessage)),
+      ms
+    );
 
     originalPromise.then(
       (resolvedValue) => {
