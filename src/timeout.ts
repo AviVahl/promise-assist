@@ -6,7 +6,7 @@
  *
  * @param originalPromise the original Promise to wrap with the timeout
  * @param ms milliseconds to wait before rejecting due to timeout
- * @param timeoutMessage optional custom timeout message
+ * @param timeoutMessage optional custom timeout message, or a callback returning one
  */
 export function timeout<T>(
   originalPromise: Promise<T>,
