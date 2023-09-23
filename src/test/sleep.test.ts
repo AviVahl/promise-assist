@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import assert from 'node:assert/strict';
 import { sleep } from '../sleep.js';
 
 describe('sleep', () => {
@@ -9,6 +10,6 @@ describe('sleep', () => {
     await sleep(delay);
 
     const endTime = Date.now();
-    expect(endTime, 'verify delay').to.be.gte(startTime + delay * 0.95);
+    assert.ok(endTime >= startTime + delay * 0.95, 'verify delay');
   });
 });

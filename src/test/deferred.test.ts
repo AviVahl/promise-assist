@@ -1,28 +1,26 @@
-import chai, { expect } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+import { describe, it } from 'mocha';
+import assert from 'node:assert/strict';
 import { deferred } from '../deferred.js';
-
-chai.use(chaiAsPromised);
 
 describe('deferred', () => {
   it('resolves with undefined by default', async () => {
     const { promise, resolve } = deferred();
     setTimeout(() => resolve(), 50);
 
-    await expect(promise).to.eventually.become(undefined);
+    assert.equal(await promise, undefined);
   });
 
   it('resolves with original value if resolve is called', async () => {
     const { promise, resolve } = deferred<number>();
     setTimeout(() => resolve(2), 50);
 
-    await expect(promise).to.eventually.become(2);
+    assert.equal(await promise, 2);
   });
 
   it('resolves with original value if reject is called', async () => {
     const { promise, reject } = deferred<number>();
     setTimeout(() => reject('FAILED!'), 50);
 
-    await expect(promise).to.eventually.be.rejectedWith('FAILED!');
+    await assert.rejects(promise, /FAILED!/);
   });
 });
