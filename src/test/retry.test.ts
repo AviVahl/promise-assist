@@ -1,7 +1,8 @@
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { retry, sleep } from '../src';
-import { IStubCall, stub } from './stub';
+import { retry } from '../retry.js';
+import { sleep } from '../sleep.js';
+import { IStubCall, stub } from './stub.js';
 
 chai.use(chaiAsPromised);
 const NO_ADDITIONAL_CALLS_GRACE = 200;

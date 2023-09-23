@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { deferred } from '../src';
+import { deferred } from '../deferred.js';
 
 chai.use(chaiAsPromised);
 

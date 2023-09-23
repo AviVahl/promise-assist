@@ -1,6 +1,7 @@
 import chai, { expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { timeout, sleep } from '../src';
+import { sleep } from '../sleep.js';
+import { timeout } from '../timeout.js';
 
 chai.use(chaiAsPromised);
 

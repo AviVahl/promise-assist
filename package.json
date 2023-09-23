@@ -2,22 +2,20 @@
   "name": "promise-assist",
   "description": "Several helper functions when working with native promises",
   "version": "2.0.1",
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
-  "types": "./esm/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "scripts": {
-    "clean": "rimraf ./cjs ./esm",
+    "clean": "rimraf ./dist",
     "prebuild": "npm run clean",
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc -p tsconfig.build.json --outDir cjs --module commonjs",
-    "build:esm": "tsc -p tsconfig.build.json --outDir esm --module esnext",
-    "typecheck": "tsc --noEmit",
-    "pretest": "npm run typecheck",
-    "test": "mocha",
+    "build:cjs": "tsc -p tsconfig.build.json --outDir dist/cjs --module commonjs --moduleResolution node",
+    "build:esm": "tsc -p tsconfig.build.json --outDir dist/esm --module esnext --moduleResolution node",
+    "pretest": "npm run build",
+    "test": "mocha dist/cjs/test",
     "prepack": "npm run build"
   },
   "devDependencies": {
-    "@ts-tools/node": "^5.0.2",
     "@types/chai": "^4.3.6",
     "@types/chai-as-promised": "^7.1.6",
     "@types/mocha": "^10.0.1",
@@ -29,9 +27,11 @@
     "typescript": "~5.2.2"
   },
   "files": [
-    "cjs",
-    "esm",
-    "src"
+    "dist",
+    "src",
+    "!dist/esm/test",
+    "!dist/cjs/test",
+    "!src/test"
   ],
   "engines": {
     "node": ">=18"
@@ -39,17 +39,6 @@
   "sideEffects": false,
   "author": "Avi Vahl <avi.vahl@wix.com>",
   "license": "MIT",
-  "mocha": {
-    "require": [
-      "@ts-tools/node/r"
-    ],
-    "extension": [
-      "js",
-      "json",
-      "ts",
-      "tsx"
-    ]
-  },
   "repository": "https://github.com/AviVahl/promise-assist",
   "homepage": "https://github.com/AviVahl/promise-assist"
 }

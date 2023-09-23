@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { sleep } from '../src';
+import { sleep } from '../sleep.js';
 
 describe('sleep', () => {
   it('resolves after provided the ms', async () => {
