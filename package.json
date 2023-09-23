@@ -9,8 +9,8 @@
     "clean": "rimraf ./dist",
     "prebuild": "npm run clean",
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc -p tsconfig.build.json --outDir dist/cjs --module commonjs --moduleResolution node",
-    "build:esm": "tsc -p tsconfig.build.json --outDir dist/esm --module esnext --moduleResolution node",
+    "build:cjs": "tsc --outDir dist/cjs --module commonjs --moduleResolution node",
+    "build:esm": "tsc --outDir dist/esm --module esnext --moduleResolution node",
     "pretest": "npm run build",
     "test": "mocha dist/cjs/test",
     "prepack": "npm run build"
