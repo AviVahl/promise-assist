@@ -6,7 +6,7 @@
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "scripts": {
-    "clean": "rimraf ./dist",
+    "clean": "node scripts/clean.mjs",
     "prebuild": "npm run clean",
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc --outDir dist/cjs --module commonjs --moduleResolution node",
@@ -19,7 +19,6 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "18",
     "mocha": "^10.2.0",
-    "rimraf": "^5.0.1",
     "typescript": "~5.2.2"
   },
   "files": [
