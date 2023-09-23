@@ -12,13 +12,11 @@
     "build:cjs": "tsc --outDir dist/cjs --module commonjs --moduleResolution node",
     "build:esm": "tsc --outDir dist/esm --module esnext --moduleResolution node",
     "pretest": "npm run build",
-    "test": "mocha dist/cjs/test",
+    "test": "node --test --enable-source-maps dist/cjs/test",
     "prepack": "npm run build"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.1",
     "@types/node": "18",
-    "mocha": "^10.2.0",
     "typescript": "~5.2.2"
   },
   "files": [
