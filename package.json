@@ -10,7 +10,7 @@
     "prebuild": "npm run clean",
     "build": "tsc --build",
     "pretest": "npm run build",
-    "test": "node --test --enable-source-maps dist/cjs/test",
+    "test": "node --test --enable-source-maps",
     "prepack": "npm run build"
   },
   "devDependencies": {
@@ -20,7 +20,6 @@
   "files": [
     "dist",
     "src",
-    "!dist/esm/test",
     "!dist/cjs/test",
     "!src/test"
   ],
