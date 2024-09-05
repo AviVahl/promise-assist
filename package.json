@@ -16,7 +16,7 @@
     "prepack": "npm run build"
   },
   "devDependencies": {
-    "@types/node": "18",
+    "@types/node": "20",
     "typescript": "~5.5.4"
   },
   "files": [
@@ -27,7 +27,7 @@
     "!src/test"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "sideEffects": false,
   "author": "Avi Vahl <avi.vahl@wix.com>",
