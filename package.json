@@ -8,9 +8,7 @@
   "scripts": {
     "clean": "node scripts/clean.mjs",
     "prebuild": "npm run clean",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --outDir dist/cjs --module commonjs --moduleResolution node",
-    "build:esm": "tsc --outDir dist/esm --module esnext --moduleResolution node",
+    "build": "tsc --build",
     "pretest": "npm run build",
     "test": "node --test --enable-source-maps dist/cjs/test",
     "prepack": "npm run build"
