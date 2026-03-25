@@ -15,12 +15,13 @@
   },
   "devDependencies": {
     "@types/node": "20",
-    "typescript": "~5.9.3"
+    "typescript": "~6.0.2"
   },
   "files": [
     "dist",
     "src",
     "!dist/cjs/test",
+    "!dist/*.tsbuildinfo",
     "!src/test"
   ],
   "engines": {
